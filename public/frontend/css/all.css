@@ -1,0 +1,203 @@
+﻿/*Themes Starts*/
+@media only screen and (max-width: 767px) {
+    .section-title::before {
+      left: -14px;
+    }
+}
+
+.achievement-area-custom{
+    background: #f8f8f8;
+}
+/* .video-area-custom{
+    background: #000;
+} */
+/* .bg-line-art{
+    background: #f8f8f8 url("../img/raj-images/bg-8.jpg") 0 50%;
+} */
+.video-area::before {
+    border: 0 !important;
+}
+.section-title h2{
+    font-size: 44px !important;
+}
+@media only screen and (max-width: 991px) {
+    .section-title h2{
+        font-size: 32px !important;
+    }
+}
+/*Themes Ends*/
+.grid-container-custom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.grid-item-custom {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ecfff5+100&0+0,1+100 */
+background: linear-gradient(135deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    display: flex;
+    align-items: top;
+    /* font-weight: 600; */
+    padding: 16px;
+    border-radius: 5px;
+    border: 1px solid #a3a3a3;
+}
+.icon-custom {
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border: 1px solid #00a651;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-custom img{
+    max-width: 14px;
+}
+
+@media (max-width: 768px) {
+    .grid-container-custom {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+/* .abt-row-custom{
+  background: green; 
+} */
+/* .abt-col-custom{
+    background: #eee;
+} */
+.abt-col-custom:nth-child(1) h3{
+    color: #2c93c4 !important;
+}
+.abt-col-custom:nth-child(1) svg path{
+    fill: #2c93c4 !important;
+}
+.abt-col-custom:nth-child(2) h3{
+    color: #edb51d !important;
+}
+.abt-col-custom:nth-child(2) svg path{
+    fill: #edb51d !important;
+}
+.abt-col-custom:nth-child(3) h3{
+    color: #2cc4b0 !important;
+}
+.abt-col-custom:nth-child(3) svg path{
+    fill: #2cc4b0 !important;
+}
+.abt-col-custom:nth-child(4) h3{
+    color: #e44848 !important;
+}
+.abt-col-custom:nth-child(4) svg path{
+    fill: #e44848 !important;
+}
+.abt-col-custom:nth-child(5) h3{
+    color: #d748e4 !important;
+}
+.abt-col-custom:nth-child(5) svg path{
+    fill: #d748e4 !important;
+}
+.abt-col-custom:nth-child(6) h3{
+    color: #00a651 !important;
+}
+.abt-col-custom:nth-child(6) svg path{
+    fill: #00a651 !important;
+}
+/* .svg-custom{
+    background: silver;
+} */
+.custon-h3{
+    margin-left: 32px;
+}
+.visa-custom{
+    background: #f8f8f8 ;
+}
+.custom-table table{
+    border-color: #a3a3a3;
+}
+.custom-table th{
+    background: #edfff6;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 16px 20px;
+}
+.custom-table td{
+    padding: 12px 20px;
+}
+.two-col-custom{
+    background: #fff;
+}
+.popularandcost{
+    color: #333333;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.popularandcost span{
+    color: #00a651;
+}
+.note-box-custom{
+    background: #fff;
+    width: 100%;
+    max-width: 1014px;
+    margin: 0 auto;
+    padding: 16px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #a3a3a3;
+}
+.faq-section{
+    background: #f8f8f8;
+}
+/* .accordion-custom{
+    background: #ff00ff;
+} */
+.accordion-custom .card{
+    margin-bottom: 8px;
+}
+.accordion-custom .card-header{
+    background: none;
+    border-bottom: none;
+    padding: 0;
+    border-radius: 8px 8px 0 0;
+    -webkit-border-radius: 8px 8px 0 0;
+}
+.accordion-custom .accordion-button{
+    color: rgba(0,0,0,.8);
+    text-decoration: none;
+    padding: 20px 16px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+.accordion-custom .accordion-button:not(.collapsed){
+    background: #f3fff9;
+    color: #000;
+    border-radius: 8px 8px 0 0;
+    -webkit-border-radius: 8px 8px 0 0;
+}
+.accordion-custom .accordion-button:focus{
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-bottom: 1px solid #d2d2d2;
+}
+.footer-form-custom{
+    background: #fff ;
+}
+@media only screen and (max-width: 991px) {
+    .pt-80 {
+        padding-top: 30px;
+    }
+    .pb-80 {
+        padding-bottom: 30px;
+    }
+    .pt-75{
+        padding-top: 30px;
+    }
+    .pt-90 {
+        padding-top: 30px;
+    }
+    .pb-50{
+        padding-bottom: 30px;
+    }
+}

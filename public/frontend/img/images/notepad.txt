@@ -1,0 +1,14 @@
+IconSets:
+https://thenounproject.com/icon/educational-7237728/
+https://thenounproject.com/icon/healthcare-5614091/
+https://thenounproject.com/icon/contract-7515367/
+https://thenounproject.com/icon/3d-model-6327906/
+
+
+Colors: 
+1. Blue: #2c93c4
+2. Orange: #edb51d
+3. Green: #00a651
+4. Red: #e44848
+5. Pink: #d748e4
+6. aqua: #2cc4b0;
