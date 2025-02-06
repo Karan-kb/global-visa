@@ -18,34 +18,36 @@
             </div>
         </div>
     </div>
-    <div class="event-area pt-130 pb-130">
+
+    
+    <section class="all-blog">
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <div class="blog-all-wrap mr-40">
-                        <div class="row">
+                        <div class="row hello-wrap">
                             @if ($blogs)
                                 @foreach ($blogs as $blog)
-                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="single-blog mb-30">
-                                            <div class="blog-img">
-                                                <a href="{{ route('blog-details', $blog->slug) }}"><img
-                                                        src="{{ asset('storage/blog/' . $blog->image) }}"
-                                                        alt=""></a>
+                                    <div class="col-md-6 hello-col">
+                                        <div class="hello-box">
+                                            <div class="hello-img">
+                                                <a href="{{ route('blog-details', $blog->slug) }}">
+                                                    <img src="{{ asset('storage/blog/' . $blog->image) }}" alt="">
+                                                </a>
                                             </div>
-                                            <div class="blog-content-wrap">
-                                                <span>{{ $blog->category->name ?? '' }}</span>
+                                            <div class="hello-content">
+                                                <span class="custom-tag">{{ $blog->category->name ?? '' }}</span>
+                                                <div class="hello-date">
+                                                    <a href="{{ route('blog-details', $blog->slug) }}">
+                                                        <i class="fa fa-calendar-o"></i>
+                                                        {{ $blog->created_at->format('F Y,d') }}
+                                                    </a>
+                                                </div>
                                                 <div class="blog-content">
-                                                    <h4><a
-                                                            href="{{ route('blog-details', $blog->slug) }}">{{ $blog->title }}</a>
+                                                    <h4>
+                                                        <a href="{{ route('blog-details', $blog->slug) }}">{{ $blog->title }}</a>
                                                     </h4>
                                                     <p>{!! $blog->short_description !!}</p>
-
-                                                </div>
-                                                <div class="blog-date">
-                                                    <a href="{{ route('blog-details', $blog->slug) }}"><i
-                                                            class="fa fa-calendar-o"></i>
-                                                        {{ $blog->created_at->format('F Y,d') }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +84,6 @@
                                 @endif
                             </ul>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4">
@@ -184,6 +185,6 @@
                     <a href="#"><img src="{{ asset('frontend/img/brand-logo/2.png') }}" alt=""></a>
                 </div>
             </div>
-        </div>
-    </div> --}}
+        </div> --}}
+    </section>
     @endsection
