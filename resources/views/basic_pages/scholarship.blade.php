@@ -20,29 +20,36 @@
     </div>
 
     <!-- Scholarship List Area -->
-    <!-- Scholarship List Area -->
-    <div class="scholarship-list-area pt-130 pb-130">
+
+
+
+
+
+
+
+
+    <section class="hellor">
         <div class="container">
+            <!-- <div class="section-title mb-75">
+                <h2>Scholarship</h2>
+                <p>Unlock your future with our exclusive scholarship opportunities!</p>
+            </div> -->
             @if ($scholarships && $scholarships->count())
-                <div class="row">
+                <div class="row hello-wrap">
                     @foreach ($scholarships as $scholarship)
-                        <div class="col-md-4 mb-4"> <!-- Updated to col-md-4 to show 3 per row -->
-                            <div class="scholarship-form border p-4 rounded shadow">
-                                <div class="scholarship-title mb-3">
-                                    @if ($scholarship->image)
-                                        <div class="scholarship-image text-center mb-3">
-                                            <img src="{{ asset('storage/scholarship/' . $scholarship->image) }}"
-                                                alt="{{ $scholarship->title }}" class="img-fluid rounded"
-                                                style="height: 202px; width: 270px;">
-                                        </div>
-                                    @endif
-                                    <h2 class="text-center">{{ $scholarship->title ?? 'Scholarship' }}</h2>
-                                    <p class="text-justify">{!! Str::limit($scholarship->short_description ?? 'Fill out the form to apply for the scholarship.', 178, '.') !!}</p>
-                                    <div class="text-center">
-                                        <a href="{{ route('scholarship-details', $scholarship->slug) }}"
-                                            class="btn btn-primary read-more-btn">
-                                            Read More
-                                        </a>
+                        <div class="col-md-4 hello-col">
+                            <div class="hello-box">
+                                @if ($scholarship->image)
+                                    <div class="hello-img">
+                                        <img src="{{ asset('storage/scholarship/' . $scholarship->image) }}"
+                                            alt="{{ $scholarship->title }}">
+                                    </div>
+                                @endif
+                                <div class="hello-content">
+                                    <h4>{{ $scholarship->title ?? 'Scholarship' }}</h4>
+                                    <p>{!! Str::limit($scholarship->short_description ?? 'Fill out the form to apply for the scholarship.', 178, '.') !!}</p>
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                        <a href="{{ route('scholarship-details', $scholarship->slug) }}" class="btn btn-primary read-more-btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -53,11 +60,7 @@
                 <p class="text-center">No scholarships available at the moment. Please check back later.</p>
             @endif
         </div>
-    </div>
-
-
-
-
+    </section>
    
 @endsection
 

@@ -190,9 +190,9 @@
                             {{-- @dd($destination_single->latestCost->value) --}}
 
                             @if (!empty($destination_single->latestCost) && $destination_single->latestCost->value)
-                                {{-- <div class="table-content"> --}}
-                                {!! $destination_single->latestCost->value ?? '' !!} &nbsp;&nbsp;
-                                {{-- </div> --}}
+                                <div class="custom-table bootstrap-table responsive-table table-responsive">
+                                    {!! $destination_single->latestCost->value ?? '' !!} &nbsp;&nbsp;
+                                </div> 
                             @endif
 
 
@@ -336,7 +336,9 @@
                                 <span>{{ $destination_single->nation->name ?? '' }}</span>
                             </h3>
                             @if (!empty($destination_single->latestLivingCost) && $destination_single->latestLivingCost->value)
-                                <p>{!! $destination_single->latestLivingCost->value ?? '' !!}</p>&nbsp;&nbsp;
+                                <div class="custom-table bootstrap-table responsive-table table-responsive">
+                                    {!! $destination_single->latestLivingCost->value ?? '' !!}
+                                </div> 
                             @endif
 
                         </div>
