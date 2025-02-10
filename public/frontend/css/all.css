@@ -333,3 +333,72 @@ background: linear-gradient(135deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 
     margin-top: -12px;
     margin-bottom: 4px;
 }
+.header-top{
+    padding: 15px 0 14px;
+}
+@media only screen and (max-width: 767px) {
+    .header-top{
+        padding: 12px 0 8px;
+    }
+}
+.header-top::before {
+    background: linear-gradient(135deg,  rgba(1,69,150,1) 0%,rgba(28,88,76,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    opacity: .9;
+}
+.header-bottom {
+    padding: 4px 0;
+}
+.main-menu nav ul li{
+    margin-left: 12px;
+}
+.logo {
+    margin-top: 9px;
+}
+@media only screen and (max-width: 576px) {
+    .logo {
+        margin-top: 3px;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .logo img {
+        max-width: 160px;
+      }
+}
+.logo a{
+    display: block;
+}
+@media (max-width: 1200px) {
+    .container{
+      max-width: 100% !important;
+    }
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .logo {
+      margin-top: 20px;
+    }
+}
+
+.mean-container a.meanmenu-reveal span{
+    margin-top: 6px;
+}
+.slider-area{
+    position: relative;
+    z-index: 1;
+}
+.my-box-custom .owl-item{
+    border: 1px solid #baddcc;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    overflow: hidden;
+}
+@media only screen and (max-width: 767px) {
+    .about-us.pt-70 {
+      padding-top: 10px;
+    }
+    .about-us.pb-90{
+        padding-bottom: 20px;
+    }
+    .event-area.pb-90{
+        padding-bottom: 20px;
+    }
+}

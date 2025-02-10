@@ -1,6 +1,6 @@
 <footer class="footer-area">
-    <div class="footer-top bg-img default-overlay pt-130 pb-80"
-        style="background-image:url(({{ asset('frontend/img/bg/bg-4.jpg') }});">
+    <div class="footer-top bg-img default-overlay pt-70 pb-30"
+        style="background-image:url('{{ asset('frontend/img/bg/bg-4.jpg') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">

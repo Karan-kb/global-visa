@@ -29,9 +29,9 @@
                                         <p class="animated">{{ $sd->title }}</p>
                                         <div class="slider-btn">
                                             <a class="animated default-btn btn-green-color"
-                                                href="{{ route('about') }}">ABOUT US</a>
-                                            <a class="animated default-btn btn-white-color"
-                                                href="{{ route('contact') }}">CONTACT US</a>
+                                                href="{{ route('about') }}">See Our Offers</a>
+                                            <!-- <a class="animated default-btn btn-white-color"
+                                                href="{{ route('contact') }}">CONTACT US</a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
     <div class="choose-us section-padding-1">
         <div class="container-fluid">
             <div class="row no-gutters choose-negative-mrg">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="single-choose-us choose-bg-light-blue">
                         <div class="choose-img">
                             <img src="{{ asset('storage/page/' . ($page->PageContents[0]->image ?? asset('frontend/img/icon-img/service-2.png'))) }}"
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="single-choose-us choose-bg-yellow">
                         <div class="choose-img">
                             <img class="animated"
@@ -97,8 +97,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-choose-us choose-bg-blue">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="single-choose-us choose-bg-red">
                         <div class="choose-img">
                             <img class="animated"
                                 src="{{ asset('storage/page/' . ($page->PageContents[2]->image ?? asset('frontend/img/icon-img/service-2.png'))) }}"
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="single-choose-us choose-bg-green">
                         <div class="choose-img">
                             <img class="animated"
@@ -128,7 +128,7 @@
             </div>
         </div>
     </div>
-    <div class="about-us pt-130 pb-130">
+    <div class="about-us pt-70 pb-90">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -155,8 +155,7 @@
             </div>
         </div>
     </div>
-    <div class="event-area bg-img default-overlay pt-130 pb-130"
-        style="background-image:url({{ asset('storage/page/' . ($page->PageContents[5]->image ?? asset('frontend/img/icon-img/service-2.png'))) }});">
+    <div class="event-area bg-img pt-90 pb-90" style="background: #f4f9ff;">
         <div class="container">
             <div class="section-title mb-75">
                 <h2>{{ $page->PageContents[5]->title ?? '' }}</h2>
@@ -185,13 +184,12 @@
                                 </div>
                             </div>
                             @php $counter++; @endphp
-                        @elseif ($counter < 5)
+                            @elseif ($counter < 5)
                             <!-- Next 3 items: col-md-4 -->
                             <div class="col-md-4">
                                 <div class="study-card">
                                     <a href="{{ route('destination-details', $destination->slug) }}">
                                     <img src="{{ isset($destination->banner_image) && $destination->banner_image ? asset('storage/' . $destination->banner_image) : asset('frontend/img/icon-img/service-2.png') }}" alt="Banner">
-"
                                         alt="Study in {{ $destination->title }}">
                                     </a>
                                     <div class="overlay">
@@ -220,13 +218,13 @@
         </div>
     </div>
 
-    <div class="course-area bg-img pt-130 pb-10" style="background-image:url({{ asset('frontend/img/bg/bg-1.jpg') }});">
+    <div class="course-area pt-90 pb-90" style="background: #fff;">
         <div class="container">
             <div class="section-title mb-75">
                 <h2>{{ $page->PageContents[6]->title ?? '' }}</h2>
                 <p>{{ $page->PageContents[6]->subtitle ?? '' }}</p>
             </div>
-            <div class="event-active owl-carousel nav-style-1">
+            <div class="event-active owl-carousel nav-style-1 my-box-custom">
                 @if ($courses)
                     @foreach ($courses as $course)
                         <div class="single-event event-white-bg">

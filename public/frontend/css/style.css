@@ -1529,7 +1529,8 @@ textarea:focus {
 }
 
 .mean-container a.meanmenu-reveal {
-  top: -26px;
+  /* top: -26px; */
+  top: -42px;
 }
 
 #mobile-menu-active {
@@ -1653,12 +1654,13 @@ textarea:focus {
 }
 @media only screen and (max-width: 767px) {
   .header-top:before {
-    height: 60px;
+    /* height: 60px; */
+    height: 40px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .header-top:before {
-    height: 46px;
+    height: 40px;
   }
 }
 
@@ -1793,6 +1795,8 @@ textarea:focus {
 
 .logo img {
   max-width: 100%;
+  /* max-width: 270px; */
+  
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1906,15 +1910,15 @@ textarea:focus {
 }
 .main-menu nav ul li a {
   font-size: 14px;
-  color: #333;
+  color: #292929;
   text-transform: uppercase;
   display: inline-block;
   line-height: 87px;
 }
 .main-menu nav ul li a i {
-  color: #00a651;
+  color: #292929;
   font-size: 12px;
-  margin-left: 9px;
+  margin-left: 3px;
 }
 .main-menu nav ul li.mega-menu-position {
   position: static;
@@ -2268,7 +2272,7 @@ textarea:focus {
 }
 @media only screen and (max-width: 767px) {
   .slider-height-1 {
-    height: 500px;
+    height: 400px;
   }
 }
 
@@ -2387,9 +2391,14 @@ textarea:focus {
   }
 }
 @media only screen and (max-width: 767px) {
+  .slider-content h1{
+    font-size: 22px;
+  }
   .slider-content p {
     width: 100%;
     margin: 25px 0 30px;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 .slider-content .slider-btn a {
@@ -2841,11 +2850,17 @@ textarea:focus {
 }
 
 .choose-bg-light-blue {
-  background-color: #48a7d4;
+  /* background-color: #2c93c4; */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#2c93c4+0,207ba6+100 */
+background: linear-gradient(135deg,  rgba(44,147,196,1) 0%,rgba(32,123,166,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 
 .choose-bg-yellow {
-  background-color: #fdc735;
+  /* background-color: #edb51d; */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#edb51d+0,c09319+100 */
+background: linear-gradient(135deg,  rgba(237,181,29,1) 0%,rgba(192,147,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 
 .choose-bg-blue {
@@ -2853,7 +2868,16 @@ textarea:focus {
 }
 
 .choose-bg-green {
-  background-color: #10c45c;
+  /* background-color: #00a651; */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00a651+0,096636+100 */
+background: linear-gradient(135deg,  rgba(0,166,81,1) 0%,rgba(9,102,54,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+.choose-bg-red {
+  /* background-color: #e44848; */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e44848+0,ad3939+100 */
+background: linear-gradient(135deg,  rgba(228,72,72,1) 0%,rgba(173,57,57,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
 }
 
 .choose-negative-mrg {
@@ -2870,10 +2894,14 @@ textarea:focus {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   height: 100%;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
 }
 @media only screen and (min-width: 1366px) and (max-width: 1600px) {
   .single-choose-us {
-    padding: 50px 15px 46px;
+    /* padding: 50px 15px 46px; */
+    padding: 24px 15px 24px;
   }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
@@ -2974,8 +3002,8 @@ textarea:focus {
   }
 }
 .single-choose-us .choose-content p {
-  line-height: 26px;
-  font-size: 16px;
+  line-height: 20px;
+  font-size: 14px;
   color: #fff;
 }
 .single-choose-us:hover .choose-img img {
@@ -5194,8 +5222,10 @@ textarea:focus {
 
 /*--------- 12. footer area ---------*/
 .footer-top.default-overlay:before {
-  background-color: #003502;
-  opacity: 0.89;
+  /* background-color: #003502; */
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1f2a44+0,1c584c+100 */
+background: linear-gradient(135deg,  rgba(31,42,68,1) 0%,rgba(28,88,76,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  opacity: .95;
 }
 
 @media only screen and (max-width: 767px) {
@@ -5285,6 +5315,8 @@ textarea:focus {
 }
 .footer-widget .footer-gallery ul li a img {
   width: 100%;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
 }
 .footer-widget .subscribe-style p {
   color: #fff;
@@ -5298,6 +5330,8 @@ textarea:focus {
   padding: 2px 20px;
   font-size: 14px;
   color: #333;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
 }
 .footer-widget .subscribe-style .subscribe-form form .mc-news {
   display: none;
@@ -5346,7 +5380,9 @@ textarea:focus {
 }
 
 .footer-bottom {
-  background-color: #00a651;
+  /* background-color: #00a651; */
+  background: #1e2943;
+  border-top: 1px solid #4e5d80;
 }
 
 .copyright p {
