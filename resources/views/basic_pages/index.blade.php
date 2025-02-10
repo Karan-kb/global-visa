@@ -139,7 +139,7 @@
                         </div>
                         <p>{!! $page->PageContents[4]->content ?? '' !!}</p>
                         <div class="about-btn mt-45">
-                            <a class="default-btn" href="{{ route('about') }}">ABOUT US</a>
+                            <a class="default-btn" href="{{ route('about') }}">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -229,19 +229,18 @@
                     @foreach ($courses as $course)
                         <div class="single-event event-white-bg">
                             <div class="event-img">
-                                <a href="{{ route('course-details', $course->slug) }}"><img
-                                        src="{{ asset('storage/' . $course->banner_image) }}" alt=""
-                                        style="height:227px; width:320px;"></a>
+                                <a href="{{ route('course-details', $course->slug) }}">
+                                    <img src="{{ asset('storage/' . $course->banner_image) }}" alt="">
+                                </a>
                                 {{-- <div class="event-date-wrap">
                                     <span
                                         class="event-date">{{ \Carbon\Carbon::parse($event->created_at)->format('jS') }}</span>
                                     <span>{{ \Carbon\Carbon::parse($event->created_at)->format('M') }}</span>
                                 </div> --}}
-
                             </div>
                             <div class="event-content">
                                 <h3><a href="{{ route('course-details', $course->slug) }}">{{ $course->name }}</a></h3>
-                                <p> {!! \Illuminate\Support\Str::limit($course->description, 97, '') !!}</p>
+                                {!! \Illuminate\Support\Str::limit($course->description, 97, '') !!}
                                 <div class="event-meta-wrap">
                                     <div class="event-meta">
                                         <i class="fa fa-clock-o" alt="Credit Hour"></i>
@@ -249,8 +248,9 @@
                                         <span>{{ $course->credit_hour }} Hours</span>
                                     </div>
                                     <div class="">
-                                        <a class="" href="{{ route('course-details', $course->slug) }}">Read
-                                            More</a>
+                                        <a class="" href="{{ route('course-details', $course->slug) }}">
+                                            Read More <span class="ms-1">→</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +261,7 @@
             </div>
         </div>
     </div>
-    <div class="achievement-area pt-130 pb-115">
+    <div class="achievement-area pt-70 pb-120" style="background: #f4f9ff;">
         <div class="container">
             <div class="section-title mb-75">
                 <h2>{{ $page->PageContents[7]->title ?? '' }}</h2>
@@ -293,9 +293,8 @@
                                     <img alt="" src="{{ asset('storage/testimonials/' . $testimonial->image) }}">
                                 </div>
                                 <div class="row g-0">
-                                    <div class="ms-auto col-lg-6 col-md-6">
-                                        <div class="testi-content bg-img default-overlay"
-                                            style="background-image:url({{ asset('frontend/img/bg/testi.png') }});">
+                                    <div class="ms-auto col-lg-6">
+                                        <div class="testi-content bg-img default-overlay" >
                                             <div class="quote-style quote-left">
                                                 <i class="fa fa-quote-left"></i>
                                             </div>
@@ -330,14 +329,13 @@
                     @endif
                 </div>
             </div>
-
+<!-- 
             <div class="testimonial-text-img">
                 <img alt="" src="{{ asset('frontend/img/icon-img/testi-text.png') }}">
-            </div>
+            </div> -->
         </div>
     </div>
-    <div class="register-area bg-img pt-130 pb-130"
-        style="background-image:url({{ asset('storage/page/' . ($page->PageContents[9]->image ?? asset('frontend/img/icon-img/service-2.png'))) }});">
+    <div class="register-area bg-img pt-70 pb-70 register-area-custom">
         <div class="container">
             <div class="section-title-2 mb-75 white-text">
                 <h2>{{ $page->PageContents[9]->title ?? '' }}</h2>
@@ -394,11 +392,11 @@
                 </div>
             </div>
         </div>
-        <div id="register-1" class="mouse-bg"></div>
-        <div id="register-2" class="mouse-bg"></div>
+        <!-- <div id="register-1" class="mouse-bg"></div>
+        <div id="register-2" class="mouse-bg"></div> -->
     </div>
 
-    <div class="event-area bg-img default-overlay pt-130 pb-130"
+    <div class="event-area bg-img default-overlay pt-70 pb-70"
         style="background-image:url({{ asset('storage/page/' . ($page->PageContents[10]->image ?? asset('frontend/img/icon-img/service-2.png'))) }});">
         <div class="container">
             <div class="section-title mb-75">
@@ -411,8 +409,7 @@
                         <div class="single-event event-white-bg">
                             <div class="event-img">
                                 <a href="{{ route('event-details', $event->slug) }}"><img
-                                        src="{{ asset('storage/event/' . $event->image) }}" alt=""
-                                        style="height:227px; width:320px;"></a>
+                                        src="{{ asset('storage/event/' . $event->image) }}" alt=""></a>
                                 <div class="event-date-wrap">
                                     <span
                                         class="event-date">{{ \Carbon\Carbon::parse($event->created_at)->format('jS') }}</span>
@@ -441,7 +438,7 @@
             </div>
         </div>
     </div>
-    <div class="blog-area pt-130 pb-100">
+    <div class="blog-area pt-70 pb-70">
         <div class="container">
             <div class="section-title mb-75">
                 <h2>{{ $page->PageContents[11]->title ?? '' }}</h2>
@@ -457,8 +454,7 @@
                                         dd($blog->image)
                                     @endphp --}}
                                     <a href="{{ route('blog-details', $blog->slug) }}"><img
-                                            src="{{ asset('/storage/blog/' . $blog->image) }}" alt=""
-                                            style="height:227px; width:320px;"></a>
+                                            src="{{ asset('/storage/blog/' . $blog->image) }}" alt=""></a>
                                 </div>
                                 <div class="blog-content-wrap">
                                     <span>{{ $blog->category->namae ?? '' }}</span>
