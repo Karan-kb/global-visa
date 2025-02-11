@@ -4,11 +4,11 @@
 <!-- Plugins CSS -->
 <link rel="stylesheet" href="{{ asset('frontend/css/plugins.css') }}">
 
-<link rel="stylesheet" href="{{ asset('frontend/css/all.css') }}">
 <!-- Main Style CSS -->
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('frontend/css/all.css') }}">
 <style>
     /* Basic Button Styles */
     .clear .button {
