@@ -423,3 +423,83 @@ background: linear-gradient(135deg,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 
 .blog-area{
     background: #f4f9ff;
 }
+.custom-overlay{
+    position: relative;
+}
+.custom-overlay::before{
+    background: linear-gradient(to bottom,  rgba(28,88,56,0) 0%,rgba(0,0,0,1) 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    right: 0;
+    bottom: 0;
+    opacity: 0.8;
+}
+.about-img-2{
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    overflow: hidden;
+}
+.recom-box {
+    margin-bottom: 16px;
+  }
+  
+.recom-box h5 {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 32px;
+    color: #242424;
+  }
+  .recom-box h6 {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 8px;
+    color: #000;
+    text-transform: uppercase;
+  }
+  .recom-box ul {
+    margin-bottom: 32px;
+  }
+.recom-box ul li {
+    margin-right: 16px;
+  }
+  
+.recom-box ul li a {
+    display: block;
+    padding: 0 3px;
+  }
+  
+.recom-box ul li img {
+    background: #fff;
+    height: 114px;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid #adadad;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+  }
+  
+.recom-box ul li:hover img {
+    cursor: pointer;
+  }
+  .main-menu nav ul li ul.submenu{
+    width: 280px !important;
+  }
+  .main-menu nav ul li .sub-menu>a{
+    font-weight: bold !important;
+    color: #000 !important;
+    text-transform: uppercase !important;
+  }
+  .main-menu nav ul li ul.submenu li.sub-menu:hover ul  li a::before{ 
+    display: none !important;
+    background: #000 !important;
+  }
+  .main-menu nav ul li ul.submenu li.sub-menu ul  li:hover a::before{ 
+    display: block !important;
+  }
