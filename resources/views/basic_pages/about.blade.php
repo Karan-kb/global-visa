@@ -20,110 +20,121 @@
             </div>
         </div>
     </div>
-    <div class="choose-area bg-img pt-90" style="background-image:url({{ asset('frontend/img/bg/bg-8.jpg') }});">
+    
+
+
+
+    <div class="about-us pt-130 pb-130">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-12">
-                    <div class="about-chose-us pt-120">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-about-chose-us mb-95">
-                                    <div class="about-choose-img">
-                                        <img src="{{ asset('storage/page/' . ($page->pagecontents[1]->image ?? 'frontend/img/icon-img/service-9.png')) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="about-choose-content text-light-blue">
-                                        <h3>
-                                            {{ $page->pagecontents[1]->title ?? '' }}</h3>
-                                        <p>{!! $page->pagecontents[1]->content ?? '' !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-about-chose-us mb-95 about-negative-mrg">
-                                    <div class="about-choose-img">
-                                        <img src="{{ asset('storage/page/' . ($page->pagecontents[2]->image ?? 'frontend/img/icon-img/service-9.png')) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="about-choose-content text-yellow">
-                                        <h3>{{ $page->pagecontents[2]->title ?? '' }} </h3>
-                                        <p>{!! $page->pagecontents[2]->content ?? '' !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-about-chose-us mb-95">
-                                    <div class="about-choose-img">
-                                        <img src="{{ asset('storage/page/' . ($page->pagecontents[3]->image ?? 'frontend/img/icon-img/service-9.png')) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="about-choose-content text-blue">
-                                        <h3>{{ $page->pagecontents[3]->title ?? '' }}</h3>
-                                        <p>{!! $page->pagecontents[3]->content ?? '' !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="single-about-chose-us mb-95 about-negative-mrg">
-                                    <div class="about-choose-img">
-                                        <img src="{{ asset('storage/page/' . ($page->pagecontents[4]->image ?? 'frontend/img/icon-img/service-9.png')) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="about-choose-content text-green">
-                                        <h3>
-                                            {{ $page->pagecontents[4]->title ?? '' }}</h3>
-                                        <p>{!! $page->pagecontents[4]->content ?? '' !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-7 col-md-12">
+                    <div class="about-img about-img-2 custom-overlay mr-70">
+                        <img src="{{asset('frontend/img/banner/banner-2.jpg')}}" alt="">
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="about-img">
-                        <img src="{{ asset('storage/page/' . ($page->pagecontents[5]->image ?? 'frontend/img/icon-img/service-9.png')) }}"
-                            alt="">
+                <div class="col-lg-5 col-md-12">
+                    <div class="about-content-2 pr-70">
+                        <div class="section-title section-title-green mb-30">
+                            <h2>Business Profile</h2>
+                            <p>Introduction of Global Visa Advisor</p>
+                        </div>
+                        <p><strong>Global Visa Advisor Education Consultancy</strong> (GVA) Private Limited established as an Education Consultant in January 2007. We recently celebrated 18 glorious years of experience in the field of quality consulting and guidance in 2025.</p>
+                        <p><strong>Currently</strong>, we represent a substantial number of Universities and Colleges around the world providing a large range of quality education to aspiring students.</p>
+                        <p><strong>Our mission</strong> is to sculpt the perfect and stable education packages for students willing to study abroad and Nepal. We craft an enriched career through expert advising and counseling. We are committed to maintaining a high standard in supporting our prospective students and adhering to it to become a dynamic guidance provider.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="video-area bg-img pt-270 pb-270"
-        style="background-image:url({{ asset('storage/page/' . ($page->pagecontents[6]->image ?? 'frontend/img/icon-img/service-9.png')) }});">
-        <div class="video-btn-2">
-            <a class="video-popup" href="{{ $page->pagecontents[6]->link ?? '' }}">
-                <img class="animated" src="{{ asset('frontend/img/icon-img/viddeo-btn.png') }}" alt="">
-            </a>
-        </div>
-    </div>
 
-    <div class="fun-fact-area bg-img pt-130 pb-100" style="background-image:url({{ asset('frontend/img/bg/bg-6.jpg') }});">
+    <div class="blog-area pt-70 pb-70">
         <div class="container">
-            <div class="section-title-3 section-shape-hm2-2 white-text text-center mb-100">
-                <h2>
-                    {{ $page->pagecontents[7]->title ?? '' }}</h2>
-                <p>{!! $page->pagecontents[7]->content ?? '' !!} </p>
+            <div class="section-title section-title-green mb-75">
+                <h2>Facilities and Services</h2>
+                <p>We provide various facilities and services to our students other than counseling.  Some of our distinct features include but are not limited to </p>
             </div>
             <div class="row">
-                @if ($achievements)
-                    @foreach ($achievements as $schievement)
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-count mb-30 count-one count-white">
-                                <div class="count-img">
-                                    <img src="{{ asset($schievement->image) }}" alt="">
-                                </div>
-                                <div class="count-content">
-                                    <h2 class="count">{{ $schievement->count }}</h2>
-                                    <span>{{ $schievement->title }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-
+                <div class="col-md-12">
+                    <div class="recom-box">
+                        <h5>1. Learning Facility:</h5>
+                        <ul class="d-flex flex-wrap">
+                            <li>
+                                <a href="" class="d-flex flex-column text-center">
+                                    <img src="{{asset('frontend/img/banner/fac-1.jpg')}}" alt="image description">
+                                    <!-- <h6>TOEFL</h6> -->
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="d-flex flex-column text-center">
+                                    <img src="{{asset('frontend/img/banner/fac-2.jpg')}}" alt="image description">
+                                    <!-- <h6>IELTS</h6> -->
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="d-flex flex-column text-center">
+                                    <img src="{{asset('frontend/img/banner/fac-3.jpg')}}" alt="image description">
+                                    <!-- <h6>PTE</h6> -->
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="d-flex flex-column text-center">
+                                    <img src="{{asset('frontend/img/banner/fac-4.jpg')}}" alt="image description">
+                                    <!-- <h6>SAT</h6> -->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="recom-box">
+                    <h5>2. Assistance with University selection and admission</h5>
+                </div>
+                <div class="recom-box">
+                    <h5>3. Documentation</h5>
+                </div>
+                <div class="recom-box">
+                    <h5>4. Visa procedure and</h5>
+                </div>
+                <div class="recom-box">
+                    <h5>5. Retrieving education loans</h5>
+                </div>
+            </div>
+            <div class="about-content-2 pr-70">
+                <p>We deal with students individually for test preparation, mock interviews, counseling and support.</p>
+                <p>Additionally, we pledge to support our students after they reach their destined universities and countries to prevent our students from facing challenges and confusions. We assist with the <strong>Pre-departur</strong>, <strong>Post-departure guidelines</strong>, <strong>Airport pickup </strong> and <strong>Selection of accommodation </strong>.</p>
+                <p>We are  dedicated to create a smooth transition from Nepal to a new country ensuring a sustainable new life of the students.</p>
+                <p><strong>Our mission</strong> is to sculpt the perfect and stable education packages for students willing to study abroad and Nepal. We craft an enriched career through expert advising and counseling. We are committed to maintaining a high standard in supporting our prospective students and adhering to it to become a dynamic guidance provider.</p>
+                <p>We, <strong>GVAEC</strong>, is situated Kathmandu at Putalisadak Chow (way to Dillibazar). Our office is easily accessible to students, with smooth transport links, reliable internet, and ample parking space to ensure convenience</p>
+                <p>We are renowned for delivering quality over quantity. We ensure transparency, integrity, and ethical practices in all our operations. Our team consistently enhances their expertise in international education policies and requirements, enabling us to guide students effectively in choosing the right pathway for their future.</p>
             </div>
         </div>
     </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 @endsection
 @push('js')
