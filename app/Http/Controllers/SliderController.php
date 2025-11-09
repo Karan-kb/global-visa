@@ -42,8 +42,8 @@ class SliderController extends Controller
        {
         // dd($request->all());
             $validator = Validator::make($request->all(), [
-               'heading' => 'required|max:255',
-               'title' => 'required|max:255',
+               'heading' => 'nullable|max:255',
+               'title' => 'nullable|max:255',
                'button_text'=>'nullable|max:50',
                'button_url'=>'nullable|url',
                'youtube_url'=>'nullable|url',
@@ -145,8 +145,8 @@ class SliderController extends Controller
          
             $id=$request->id;
             $validator = Validator::make($request->all(), [
-                'heading' => 'required|max:255|unique:sliders,title,' . $id,
-                'title' => 'required|max:255',
+                'heading' => 'nullable|max:255|unique:sliders,title,' . $id,
+                'title' => 'nullable|max:255',
                 'button_text'=>'nullable|max:50',
                 'button_url'=>'nullable|url',
                 'youtube_url'=>'nullable|url',

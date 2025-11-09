@@ -70,7 +70,7 @@ public function store(Request $request)
     $request->validate([
         'title' => 'required|string|max:255',
         'slug' => 'required|string|unique:destinations',
-        'sub_title' => 'nullable|string|max:255',
+        'sub_title' => 'nullable|string',
         'country' => 'required|string|max:255',
         'description' => 'nullable|string',
         'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image
@@ -92,6 +92,15 @@ public function store(Request $request)
         $nameToStore = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension; // Generate a unique name
         $path = $image->storeAs('public/destination', $nameToStore); // Save the image to storage
         $bannerImagePath = 'destination/' . $nameToStore; // Store the relative path in the database
+    }
+
+    $featureImagePath = null;
+    if ($request->hasFile('feature_image')) {
+        $featureimage = $request->file('feature_image');
+        $extension = $featureimage->getClientOriginalExtension();
+        $nameToStore = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension; // Generate a unique name
+        $path = $featureimage->storeAs('public/destination', $nameToStore); // Save the image to storage
+        $featureImagePath = 'destination/' . $nameToStore; // Store the relative path in the database
     }
     
 
@@ -115,6 +124,7 @@ public function store(Request $request)
     }
 
     $seoImagePath = null; // Initialize the variable to store the image path
+    $seoImageName = null;
 
 if ($request->hasFile('seo_image')) {
     $seoImage = $request->file('seo_image'); // Get the uploaded file
@@ -139,6 +149,7 @@ if ($request->hasFile('seo_image')) {
         'sub_title' => $request->sub_title,
         'why_subtitle' => $request->why_subtitle,
         'fact_subtitle' => $request->fact_subtitle,
+        'details_title' => $request->details_title,
         'city_subtitle' => $request->city_subtitle,
         'reason_subtitle' => $request->reason_subtitle,
         'health_subtitle' => $request->health_subtitle,
@@ -147,7 +158,8 @@ if ($request->hasFile('seo_image')) {
         "seo_title" => $request->seo_title,
         "seo_keyword" => $request->seo_keyword,
         "seo_description" => $request->seo_description,
-        'seo_image'=>$seoImageName,
+        'seo_image'=>$seoImagePath,
+        'feature_image'=>$featureImagePath,
 
         'country' => $request->country,
         'description' => $request->description,
@@ -185,6 +197,7 @@ if ($request->hasFile('seo_image')) {
             'country' => 'required|string|max:255',
             'description' => 'nullable|string',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'feature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'why_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'youtube_link' => 'nullable|string|max:255',
@@ -211,6 +224,20 @@ if ($request->hasFile('seo_image')) {
             $nameToStore = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension;
             $path = $image->storeAs('public/destination', $nameToStore);
             $bannerImagePath = 'destination/' . $nameToStore;
+        }
+
+        $featureImagePath = $dest->feature_image;
+        if ($request->hasFile('feature_image')) {
+            // Delete the old image if exists
+            if ($featureImagePath) {
+                Storage::delete('public/' . $featureImagePath);
+            }
+    
+            $featureimage = $request->file('feature_image');
+            $extension = $featureimage->getClientOriginalExtension();
+            $nameToStore = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension;
+            $path = $featureimage->storeAs('public/destination', $nameToStore);
+            $featureImagePath = 'destination/' . $nameToStore;
         }
     
         // Handle video image upload
@@ -241,30 +268,28 @@ if ($request->hasFile('seo_image')) {
             $whyImagePath = 'destination/' . $nameToStore;
         }// Get the current SEO image path from the model ($dest is your model instance)
 
-$seoImagePath = $dest->seo_image; 
+        $seoImagePath = $dest->seo_image;
 
-if ($request->hasFile('seo_image')) {
-    // Delete the existing SEO image if it exists
-    if (!is_null($seoImagePath)) {
-        // Ensure you delete the file securely
-        Storage::delete('public/' . $seoImagePath); // Deletes the file from storage
-    }
 
-    // Process and store the new SEO image
-    $seoImage = $request->file('seo_image'); // Uploaded image file
-    $extension = $seoImage->getClientOriginalExtension(); // Get the file's extension
-
-    // Generate a unique name for the new image
-    $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension;
+        if ($request->hasFile('seo_image')) {
+        if (!is_null($seoImagePath)) {
+               Storage::delete('public/' . $seoImagePath);
     
-    // Store the image in the `public/destination` directory
-    $path = $seoImage->storeAs('public/destination', $seoImageName);
+            }
 
-    // Update the new relative path for the database
-    $seoImagePath = 'destination/' . $seoImageName;
+       $seoImage = $request->file('seo_image');
 
-    // Resize the image for optimization (Optional)
-    ResizeImg::resizeImage(1200, 630, $seoImage, $this->folderPath . '/seo_' . $seoImageName);
+       $extension = $seoImage->getClientOriginalExtension(); 
+
+
+       $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension;
+    
+       $path = $seoImage->storeAs('public/destination', $seoImageName);
+
+    
+       $seoImagePath = 'destination/' . $seoImageName;
+
+       ResizeImg::resizeImage(1200, 630, $seoImage, $this->folderPath . '/seo_' . $seoImageName);
 
     
 }
@@ -277,6 +302,7 @@ if ($request->hasFile('seo_image')) {
             'title' => $request->title,
             'slug' => $request->slug,
             'sub_title' => $request->sub_title,
+            'details_title' => $request->details_title,
             'why_subtitle' => $request->why_subtitle,
             'fact_subtitle' => $request->fact_subtitle,
             'city_subtitle' => $request->city_subtitle,
@@ -289,6 +315,7 @@ if ($request->hasFile('seo_image')) {
             'banner_image' => $bannerImagePath, // Update the banner image path
             'video_image' => $videoImagePath,
             'why_image' => $whyImagePath,
+            'feature_image' => $featureImagePath,
             'youtube_link' => $request->youtube_link,
             'requirement' => $request->requirement,
             'scholarship' => $request->scholarship,

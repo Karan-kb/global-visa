@@ -10,7 +10,7 @@ class Blog extends Model
 {
     use Sluggable;
     use HasFactory;
-    protected $fillable=['title','body','image','location','category_id','featured','short_description'];
+    protected $fillable=['title','body','image','location','category_id','featured','short_description','seo_title','seo_description','seo_keyword','seo_image'];
 
     public function category(){
         return $this->belongsTo('App\Models\Category');

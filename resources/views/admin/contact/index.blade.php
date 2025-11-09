@@ -47,7 +47,7 @@ Contact
                 @foreach($contacts as $contact)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $contact->first_name . ' ' . $contact->last_name }}</td>
+                        <td>{!! $contact->first_name . ' ' . $contact->last_name !!}</td>
                         <td>{{ $contact->email }}</td>
                         {{-- <td>{{ $contact->phone}}</td> --}}
                         <td>

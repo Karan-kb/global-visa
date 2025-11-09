@@ -1,5 +1,29 @@
 @extends('basic_pages.layouts.master')
 
+
+@section('meta_content')
+    <!-- HTML Meta Tags -->
+  <title>{{ $page->title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??" "}}</title>
+  <meta name="description" content="{{ $page->seo_description??'' }}">
+  <meta name="keywords" content="{{$page->seo_keyword??""}}">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $page->seo_title??"" }} - {{ App\Helpers\Helper::getInfoValue('name') ??''}}">
+  <meta property="og:description" content="{{ $page->seo_description??"" }}">
+  <meta property="og:image" content="{{ asset('storage/page/seo_' . $page->seo_image) }}">
+  <meta property="og:image:alt" content="{{ $page->seo_title }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}} Logo">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="{{ url()->current() }}">
+  <meta property="twitter:url" content="{{ url()->current() }}">
+  <meta name="twitter:title" content="{{ $page->seo_title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}}">
+  <meta name="twitter:description" content="{{ $page->seo_description??'' }}">
+  <meta name="twitter:image" content="{{ asset('storage/page/seo_' . $page->seo_image) }}">
+    <!--seo by susan paudel-->
+@endsection
+
 @section('content')
     <div class="breadcrumb-area">
         <div class="breadcrumb-top default-overlay bg-img pt-100 pb-95"

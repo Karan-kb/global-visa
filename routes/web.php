@@ -87,7 +87,7 @@ Route::get('our-pride',[BasicPagesController::class, 'pride'])->name('pride');
 Route::get('/scholarship',[BasicPagesController::class, 'scholarship'])->name('scholarship');
 Route::get('/services',[BasicPagesController::class, 'service'])->name('service');
 Route::get('/scholarship-detail/{id}',[BasicPagesController::class, 'scholarship_detail']);
-Route::get('allblogs',[BasicPagesController::class, 'allblogs'])->name('allblogs');
+Route::get('blogs',[BasicPagesController::class, 'allblogs'])->name('allblogs');
 Route::get('allnews',[BasicPagesController::class, 'allnews'])->name('allnews');
 Route::get('allevents',[BasicPagesController::class, 'allevents'])->name('allevents');
 Route::get('/event-details/{slug}',[BasicPagesController::class, 'eventDetails'])->name('event-details');
@@ -110,8 +110,8 @@ Route::get('/newsletters',[NewsletterController::class, 'index'])->name('newslet
 
 Route::delete('/newsletters/{id}',[NewsletterController::class, 'destroy'])->name('newsletter.destroy');
 
-Route::get('/blogs',[BasicPagesController::class, 'blogs_details'])->name('blog.details');
-Route::get('/blogs-details/{slug}',[BasicPagesController::class, 'blogDetails'])->name('blog-details');
+// Route::get('/blogs',[BasicPagesController::class, 'blogs_details'])->name('blog.details');
+Route::get('/blogs/{slug}',[BasicPagesController::class, 'blogDetails'])->name('blog-details');
 Route::get('/course-details/{slug}',[BasicPagesController::class, 'courseDetails'])->name('course-details');
 
 Route::get('/search-blogs',[BasicPagesController::class, 'searchBlogs'])->name('search-blogs');

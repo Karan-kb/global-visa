@@ -9,5 +9,5 @@ class Info extends Model
 {
     use HasFactory;
     
-    protected $fillable=['name','address','address1','website','phone','mobile','email','logo','facebook','twitter','admission_year','admission_season','linkedIn','pobox','opens','closes','fax','favicon','intro_video','study_destination_video','footer_about'];
+    protected $fillable=['name','address','address1','website','phone','mobile','email','logo','facebook','instagram','twitter','admission_year','admission_season','linkedIn','pobox','opens','closes','fax','favicon','intro_video','study_destination_video','footer_about'];
 }

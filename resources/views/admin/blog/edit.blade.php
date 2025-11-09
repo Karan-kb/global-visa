@@ -2,6 +2,32 @@
 @section('title')
     Blogs
 @endsection
+
+
+@push('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
+    <style>
+        .box {
+            border: 2px solid #ccc;
+            padding: 12px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+
+
+
+        .bootstrap-tagsinput {
+            width: 100%;
+            display: block;
+        }
+
+        .bootstrap-tagsinput input {
+            width: auto !important;
+        }
+    </style>
+@endpush
+
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -19,7 +45,8 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <form action="/blog/{{ $blog->id }}" method="POST" class="form-container" enctype="multipart/form-data">
+                <form action="/blog/{{ $blog->id }}" method="POST" class="form-container"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -66,6 +93,8 @@
                         <label for="short_description">Short Description</label>
                         <textarea name="short_description" class="form-control ckeditor" id="" cols="30" rows="10">{{ $blog->short_description }}</textarea>
                     </div>
+
+
                     <div class="form-group">
                         <label for="file">Select Blog Image</label>
                         <input class="form-control-file form-control" name="banner" type="file" id="file"
@@ -81,6 +110,38 @@
                         <small class="form-text text-muted" id="fileHelp">Leave for old image</small>
 
                     </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="seo_title">SEO Title</label>
+                        <input type="text" class="form-control" name="seo_title" value="{{ $blog->seo_title }}">
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="seo_description">SEO Description</label>
+                        <textarea class="form-control" name="seo_description">{{ $blog->seo_description }}</textarea>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="seo_keyword">SEO Keyword</label>
+                        <input type="text" class="form-control" name="seo_keyword" id="bootstrap-tagsinput"
+                            placeholder="Enter SEO tags" data-role="tagsinput" value="{{ $blog->seo_keyword }}">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="seo_image">SEO Image</label>
+                        <input type="file" class="form-control" name="seo_image" accept="image/*">
+                        @if ($blog->seo_image)
+                            {{-- <small class="text-muted">Current Image: {{ asset('storage/' .$dest->seo_image) }}</small> --}}
+                            <img src="{{ asset('storage/blog/' . $blog->seo_image) }}" style="height: 50px; width:70px"
+                                alt="Image">
+                        @endif
+                        <small class="text-muted">
+                            <strong>Recommended:</strong> JPG, JPEG, PNG | 1200px x 630px | ≤ 9MB
+                        </small>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Update Blog</button>
                     </div>
@@ -89,3 +150,22 @@
         </div>
     </section>
 @endsection
+
+
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+
+
+
+            $('#seo_keyword').tagsinput({
+                confirmKeys: [13, 44],
+                trimValue: true
+            });
+        });
+    </script>
+@endpush

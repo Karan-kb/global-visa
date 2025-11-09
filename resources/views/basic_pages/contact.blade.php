@@ -1,5 +1,31 @@
 @extends('basic_pages.layouts.master')
 
+
+@section('meta_content')
+    <!-- HTML Meta Tags -->
+    <title>{{ $page->title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? ' ' }}</title>
+    <meta name="description" content="{{ $page->seo_description ?? '' }}">
+    <meta name="keywords" content="{{ $page->seo_keyword ?? '' }}">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $page->seo_title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }}">
+    <meta property="og:description" content="{{ $page->seo_description ?? '' }}">
+    <meta property="og:image" content="{{ asset('storage/page/seo_' . $page->seo_image) }}">
+    <meta property="og:image:alt"
+        content="{{ $page->seo_title }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }} Logo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="{{ url()->current() }}">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title"
+        content="{{ $page->seo_title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }}">
+    <meta name="twitter:description" content="{{ $page->seo_description ?? '' }}">
+    <meta name="twitter:image" content="{{ asset('storage/page/seo_' . $page->seo_image) }}">
+    <!--seo by susan paudel-->
+@endsection
+
 @section('content')
     <div class="breadcrumb-area">
         <div class="breadcrumb-top default-overlay bg-img breadcrumb-overly-5 pt-100 pb-95"
@@ -24,7 +50,7 @@
                 <div class="col-lg-7">
                     <div class="contact-map mr-70">
                         <div id="map">
-                            {!! $page->pagecontents[1]->link ?? '' !!}
+                            {!! App\Helpers\Helper::getInfoValue('map') !!}
                         </div>
                     </div>
                 </div>
@@ -34,13 +60,16 @@
                             <h2>{{ $page->pagecontents[1]->title ?? '' }}</h2>
                             <p>{!! $page->pagecontents[1]->content ?? '' !!}.</p>
                         </div>
-                        <form action="{{ route('contact-us') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('contact-us') }}" method="post" enctype="multipart/form-data"
+                            id="regsiter-form">
                             @csrf
                             <input name="name" placeholder="Name*" type="text" required>
                             <input name="email" placeholder="Email*" type="email" required>
+
                             <input name="subject" placeholder="Subject*" type="text">
-                            <textarea name="messege" placeholder="Message" ></textarea>
-                            <button class="submit btn-style" type="submit">SEND MESSAGE</button>
+                            <textarea name="messege" placeholder="Message"></textarea>
+                            <button class="g-recaptcha submit btn-style" data-sitekey="{{ config('services.recaptcha.site_key') }}"
+                                data-callback='onSubmit' data-action='submit' type="submit">SEND MESSAGE</button>
                         </form>
                         <p class="form-messege"></p>
                     </div>
@@ -87,18 +116,31 @@
             </div>
         </div>
     </div>
-    {{-- <div class="brand-logo-area pt-130 pb-130">
-        <div class="container">
-            <div class="brand-logo-active owl-carousel">
-                @if ($brands)
+    @if ($brands && $brands->isNotEmpty())
+        <div class="brand-logo-area pt-130 pb-130">
+            <div class="container">
+                <div class="brand-logo-active owl-carousel">
+
                     @foreach ($brands as $brand)
                         <div class="single-brand-logo">
-                            <a href="#"><img src="{{ asset('storage/brand/' . $brand->image ?? 'frontend/img/icon-img/service-9.png') }}" alt=""></a>
+                            <a href="#"><img
+                                    src="{{ asset('storage/brand/' . $brand->image ?? 'frontend/img/icon-img/service-9.png') }}"
+                                    alt=""></a>
                         </div>
                     @endforeach
-                @endif
-                
+
+
+                </div>
             </div>
         </div>
-    </div> --}}
+    @endif
+
+
+    
 @endsection
+<script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("regsiter-form").submit();
+        }
+    </script>

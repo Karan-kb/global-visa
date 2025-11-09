@@ -1,12 +1,63 @@
 @extends('basic_pages.layouts.master')
 
+
+@section('meta_content')
+    <!-- HTML Meta Tags -->
+    <title>{{ $blog->title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? ' ' }}</title>
+    <meta name="description" content="{{ $blog->seo_description ?? '' }}">
+    <meta name="keywords" content="{{ $blog->seo_keyword ?? '' }}">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $blog->seo_title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }}">
+    <meta property="og:description" content="{{ $blog->seo_description ?? '' }}">
+    <meta property="og:image"
+        content="{{ $blog->seo_image ? asset('storage/blog/' . $blog->seo_image) : asset('storage/blog/' . $blog->image) }}">
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"
+        content="{{ $blog->seo_title }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }} Logo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="{{ url()->current() }}">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title"
+        content="{{ $blog->seo_title ?? '' }} - {{ App\Helpers\Helper::getInfoValue('name') ?? '' }}">
+    <meta name="twitter:description" content="{{ $blog->seo_description ?? '' }}">
+    <meta name="twitter:image" content="{{ asset('storage/blog/' . $blog->seo_image) }}">
+    <!--seo by susan paudel-->
+@endsection
+
+@push('css')
+    <style>
+        .breadcrumb-top h1 {
+            font-weight: bold;
+            font-size: 48px;
+            margin: 0 0 22px;
+            color: #fff;
+            z-index: 9;
+            position: relative;
+        }
+
+        .blog-details-top .blog-details-content-wrap h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 8px 0 23px;
+            color: #00a651;
+        }
+    </style>
+@endpush
+
+
+
 @section('content')
     <div class="breadcrumb-area">
         <div class="breadcrumb-top default-overlay bg-img breadcrumb-overly-3 pt-100 pb-95"
             style="background-image:url({{ asset('storage/page/' . ($page->pagecontents[0]->image ?? 'frontend/img/icon-img/service-9.png')) }});">
             <div class="container">
-                <h2>{{ $page->pagecontents[0]->title ?? 'Blog Details' }}</h2>
-                <p>{!! $page->pagecontents[0]->content ?? 'Blog Details' !!}
+                <h1 style="line-height: 1.5">{{ $blog->title }}</h1>
+                {{-- <p>{!! $page->pagecontents[0]->content ?? 'Blog Details' !!} --}}
                 </p>
             </div>
         </div>
@@ -36,7 +87,7 @@
                                     </div>
                                     <span>{{ $blog->category->name ?? '' }}</span>
                                 </div>
-                                <h3>{{ $blog->title }}</h3>
+                                <h2>{{ $blog->title }}</h2>
                                 <p>{!! $blog->body !!}</p>
 
 
@@ -141,7 +192,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-4">
                     <div class="sidebar-style">
-                      
+
 
                         <div class="sidebar-recent-post mb-35">
                             <div class="sidebar-title mb-40">
@@ -181,17 +232,17 @@
                                             <div class="sidebar-recent-course-img">
                                                 <a href="{{ route('course-details', $course->slug) }}"><img
                                                         src="{{ asset('storage/' . $course->banner_image) }}" "
-                                                                alt=""></a>
-                                                    </div>
-                                                    <div class="sidebar-recent-course-content">
-                                                        <h4><a href="{{ route('course-details', $course->slug) }}">{{ $course->name }}</a></h4>
-                                                        <ul>
-                                                            <li>Credits : {{ $course->credit_hour }} Hours</li>
-                                                          
-                                                        </ul>
-                                                       
-                                                    </div>
-                                                </div>
+                                                                            alt=""></a>
+                                                                </div>
+                                                                <div class="sidebar-recent-course-content">
+                                                                    <h4><a href="{{ route('course-details', $course->slug) }}">{{ $course->name }}</a></h4>
+                                                                    <ul>
+                                                                        <li>Credits : {{ $course->credit_hour }} Hours</li>
+                                                                      
+                                                                    </ul>
+                                                                   
+                                                                </div>
+                                                            </div>
      @endforeach
                                     @endif
 

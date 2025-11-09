@@ -1,9 +1,11 @@
 <footer class="footer-area">
+
     <div class="footer-top bg-img default-overlay pt-70 pb-30"
+
         style="background-image:url('{{ asset('frontend/img/bg/bg-4.jpg') }}');">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="footer-widget mb-40">
                         <div class="footer-title">
                             <h4>ABOUT US</h4>
@@ -27,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="footer-widget mb-40">
                         <div class="footer-title">
                             <h4>QUICK LINK</h4>
@@ -37,13 +39,13 @@
                                 <li><a href="{{ route('index') }}">Home</a></li>
                                 <li><a href="{{ route('about') }}">About Us</a></li>
                                 <li><a href="{{ route('allblogs') }}">Blogs</a></li>
-                                <li><a href="{{ route('scholarship') }}">Scholarship</a></li>
+                                {{-- <li><a href="{{ route('scholarship') }}">Scholarship</a></li> --}}
                                 <li><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                {{-- <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="footer-widget negative-mrg-30 mb-40">
                         <div class="footer-title">
                             <h4>COURSES</h4>
@@ -60,7 +62,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="footer-widget mb-40">
                         <div class="footer-title">
@@ -86,7 +88,7 @@
                             <h4>News Latter</h4>
                         </div>
                         <div class="subscribe-style">
-                            <p>Dugiat nulla pariatur. Edeserunt mollit anim id est laborum. Sed ut perspiciatis unde</p>
+                            <p>By subscribing, you’ll get the latest news delivered straight to your inbox.</p>
                             <div id="mc_embed_signup" class="subscribe-form">
                                 <form method="post" action="{{ route('newsletter-subscription') }}"
                                     enctype="multipart/form-data">

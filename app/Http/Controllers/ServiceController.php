@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Service;
+use App\Models\ResizeImg;
 use App\Models\Questionaire;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    protected $folderPath, $path;
+
     public function __construct(){
+
         $this->middleware('auth');
+
+        $this->folderPath = 'public/service';
+        $this->path = public_path('storage/service');
+        if (!file_exists($this->path)) {
+            Storage::makeDirectory($this->folderPath);
+            chmod($this->path, 0755);
+        }
     }
     /**
      * Display a listing of the resource.
@@ -21,6 +32,7 @@ class ServiceController extends Controller
     public function index()
     {
         $service=Service::orderBy('created_at','DESC')->get();
+
         return view('admin.service.service')->with('service',$service);
     }
 
@@ -67,10 +79,30 @@ class ServiceController extends Controller
             $path1=$image1->move('storage/services/icon',$nameToStore1);
         }
 
+       
+
+        $seoImageName = null;
+
+        if ($request->hasFile('seo_image')) {
+            $seoImage = $request->file('seo_image'); // Get the uploaded file
+            $extension = $seoImage->getClientOriginalExtension(); // Get the file extension
+            $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension; // Generate a unique name
+            $path = $seoImage->storeAs('public/service', $seoImageName); // Save the image to storage
+            $seoImagePath = 'service/' . $seoImageName; // Store the relative path in the database
+        
+            // Resize the image if needed (optional)
+            ResizeImg::resizeImage(1200, 630, $seoImage, $this->folderPath . '/seo_' . $seoImageName);
+        }
+
         $service = new Service;
         $service->title = $request->title;
         $service->body = $request->body ?? null;
         $service->image = $nameToStore ?: null;
+        $service->order = $request->order;
+        $service->seo_title = $request->seo_title;
+        $service->seo_keyword = $request->seo_keyword;
+        $service->seo_description = $request->seo_description;
+        $service->seo_image =$seoImageName;
         $service->order = $request->order;
         $service->save();
         
@@ -137,11 +169,35 @@ class ServiceController extends Controller
      
         }
 
+
+        $seoImageName = $service->seo_image;
+
+
+        if ($request->hasFile('seo_image')) {
+            // Delete old SEO image if exists
+            if (!empty($service->seo_image) && Storage::exists('public/service/' . $service->seo_image)) {
+                Storage::delete('public/service/' . $service->seo_image);
+            }
+    
+            // Save new SEO image
+            $seoImage = $request->file('seo_image');
+            $extension = $seoImage->getClientOriginalExtension();
+            $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() . '.' . $extension;
+    
+            $seoImage->storeAs('public/service', $seoImageName);
+            ResizeImg::resizeImage(1200, 630, $seoImage, 'public/service/seo_' . $seoImageName);
+    
+            $service->seo_image = $seoImageName;
+        }
     
         
         $service->title=$request->title;
         $service->body=$request->body;
         $service->order=$request->order;
+        $service->seo_title = $request->seo_title;
+        $service->seo_keyword = $request->seo_keyword;
+        $service->seo_description = $request->seo_description;
+        $service->seo_image =$seoImageName;
 
         $service->save();
 

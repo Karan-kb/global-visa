@@ -37,5 +37,13 @@
     @endif
 </script>
 
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#preloader').fadeOut('slow');
+        }, 500);
+    });
+</script>
+
 
 @stack('js')

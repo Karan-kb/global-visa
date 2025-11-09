@@ -103,6 +103,7 @@ class InfoController extends Controller
         $info->facebook= $request->facebook==NULL?NULL:$request->facebook;
         $info->linkedIn= $request->linkedIn==NULL?NULL:$request->linkedIn;
         $info->twitter= $request->twitter==NULL?NULL:$request->twitter;
+        $info->instagram= $request->instagram==NULL?NULL:$request->instagram;
         $info->fax= $request->fax==NULL?NULL:$request->fax;
         $info->pobox= $request->pobox==NULL?NULL:$request->pobox;
         $info->opens= $request->opens==NULL?NULL:$request->opens;

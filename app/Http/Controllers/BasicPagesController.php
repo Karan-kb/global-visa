@@ -48,6 +48,7 @@ use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Message;
 use App\Models\Resource;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -66,7 +67,10 @@ class BasicPagesController extends Controller
         $data['testimonials'] = Testimonial::where('status',1)->get();  
         $data['events'] = Event::orderBy('created_at','DESC')->get();   
         $data['blogs'] = Blog::orderBy('created_at', 'desc')->take(3)->get();  
-        $data['slider'] = Slider::latest()->take(2)->get();
+        $data['slider'] = Slider::latest()->take(2)->where('status',1)->get();
+        $data['brands'] = Brand::all();
+        $data['services'] = Service::orderBy('order','asc')->take(3)->get();
+        
 
                
     //    dd($data['slider']); 
@@ -113,6 +117,18 @@ class BasicPagesController extends Controller
                 'subject' => 'nullable|max:500',
                 'phone' => 'nullable|digits:10',
                 'messege' =>'max:500',
+                'g-recaptcha-response'=>['required', 
+                function (string $attribute, mixed $value, \Closure $fail) use ($request) {
+                   $g_response = Http::asForm()->post("https://www.google.com/recaptcha/api/siteverify",[
+                   'secret' => config('services.recaptcha.secret_key'),
+                   'response' => $value,
+                   'remoteip' => $request->ip(),
+                   ]);
+                   
+                    if (!$g_response->json('success')) {
+                        $fail("The {$attribute} is invalid.");
+                    }
+                },]
             ]);
 
             if ($validator->fails())
@@ -163,7 +179,8 @@ class BasicPagesController extends Controller
 
     public function contactUs(Request $request)
     {
-        try{
+        // dd($request->all());
+                try{
 
             // dd($request->all());
           
@@ -173,29 +190,40 @@ class BasicPagesController extends Controller
         // dd($admin_mail);
 
         $validator = Validator::make($request->all(),[
-                'name'=>'required|max:100',
-               
+                'name'=>'required|max:100',               
                 'email' => 'required|email',
                 'phone' => 'nullable|digits:10',
-                'subject' => 'nullable|max:500',
-                
+                'subject' => 'nullable|max:500',                
                 'messege' =>'max:500',
+                'g-recaptcha-response'=>['required', 
+                function (string $attribute, mixed $value, \Closure $fail) use ($request) {
+                   $g_response = Http::asForm()->post("https://www.google.com/recaptcha/api/siteverify",[
+                   'secret' => config('services.recaptcha.secret_key'),
+                   'response' => $value,
+                   'remoteip' => $request->ip(),
+                   ]);
+                  
+                    if (!$g_response->json('success')) {
+                        $fail("The {$attribute} is invalid.");
+                    }
+                },]
+
             ]);
 
             if ($validator->fails())
             {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
-
+            
             $contact=Contact::create([
 
                 'first_name'=>strip_tags($request->name),
                 'test_id' => strip_tags($request->test_id),
                 'email' => strip_tags($request->email),
                 'phone' => strip_tags($request->phone),
-                'subject' => strip_tags($request->subject),
-                
+                'subject' => strip_tags($request->subject),                
                 'messege' =>strip_tags($request->messege),
+                
             ]);
 
           

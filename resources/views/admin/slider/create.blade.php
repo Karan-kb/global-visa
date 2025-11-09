@@ -45,15 +45,15 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="heading">Heading <span class="text-danger">*</span></label>
+                                        <label for="heading">Heading <span class="text-danger"></span></label>
                                         <input type="text" class="form-control" name="heading"
-                                            value="{{ old('heading') }}" placeholder="Enter Heading" required>
+                                            value="{{ old('heading') }}" placeholder="Enter Heading" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="title">Title <span class="text-danger">*</span></label>
+                                        <label for="title">Title <span class="text-danger"></span></label>
                                         <input type="text" class="form-control" name="title"
-                                            value="{{ old('title') }}" placeholder="Enter Title" required>
+                                            value="{{ old('title') }}" placeholder="Enter Title" >
                                     </div>
 
                                     <div class="form-group">
@@ -93,8 +93,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image_1">Image <span class="required">*</span></label>
-                                        <input type="file" class="form-control" name="image_1" accept="image/*" required>
+                                        <label for="image_1">Image <span class="required"></span></label>
+                                        <input type="file" class="form-control" name="image_1" accept="image/*">
                                         <small class="text-muted">
                                             <strong>Recommended:</strong> JPG, JPEG, PNG | 1000px x 667px | ≤ 9MB
                                         </small>

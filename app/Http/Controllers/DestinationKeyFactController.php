@@ -18,35 +18,39 @@ class DestinationKeyFactController extends Controller
         $destinations = Destination::all();
         return view('admin.destination_key_fact.create',compact('destinations'));
     }
-
     public function store(Request $request)
-{
-    // Validate the request
-    $request->validate([
-        'destination_id' => 'required|exists:destinations,id', 
-        'language' => 'required|string|max:255',
-        'required_exams' => 'nullable|string',
-        'degrees' => 'nullable|string',
-        'intakes' => 'nullable|string',
-        'visa' => 'nullable|string',
-        'cost_of_study' => 'nullable|string',
-        'source_of_funding' => 'nullable|string',
-    ]);
-
-    // Create the destination key fact
-    DestinationKeyFacts::create([
-        'destination_id' => $request->destination_id,
-        'language' => $request->language,
-        'required_exams' => $request->required_exams,
-        'degrees' => $request->degrees,
-        'intakes' => $request->intakes,
-        'visa' => $request->visa,
-        'cost_of_study' => $request->cost_of_study,
-        'source_of_funding' => $request->source_of_funding,
-    ]);
-
-    return redirect()->route('destination-key-facts.index')->with('success', 'Destination Key Fact created successfully.');
-}
+    {
+        try {
+            // Validate the request
+            $request->validate([
+                'destination_id' => 'required|exists:destinations,id', 
+                'language' => 'required|string|max:255',
+                'required_exams' => 'nullable|string',
+                'degrees' => 'nullable|string',
+                'intakes' => 'nullable|string',
+                'visa' => 'nullable|string',
+                'cost_of_study' => 'nullable|string',
+                'source_of_funding' => 'nullable|string',
+            ]);
+    
+            // Create the destination key fact
+            DestinationKeyFacts::create([
+                'destination_id' => $request->destination_id,
+                'language' => $request->language,
+                'required_exams' => $request->required_exams,
+                'degrees' => $request->degrees,
+                'intakes' => $request->intakes,
+                'visa' => $request->visa,
+                'cost_of_study' => $request->cost_of_study,
+                'source_of_funding' => $request->source_of_funding,
+            ]);
+    
+            return redirect()->route('destination-key-facts.index')->with('success', 'Destination Key Fact created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong! ' . $e->getMessage());
+        }
+    }
+    
 
     public function edit($id)
     {

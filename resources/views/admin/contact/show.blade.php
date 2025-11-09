@@ -90,7 +90,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="subject">Subject</label>
                                     <input type="text" class="form-control" name="subject"
-                                        value="{{ old('subject', $contact->subject) }}" placeholder="Subject" readonly>
+                                        value="{!! old('subject', $contact->subject) !!}" placeholder="Subject" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="messege">Message</label>

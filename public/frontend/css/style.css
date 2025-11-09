@@ -772,7 +772,7 @@ a:hover {
 }
 
 .pt-230 {
-  padding-top: 230px;
+  padding-top: 100px;
 }
 
 .pt-270 {
@@ -2253,7 +2253,7 @@ textarea:focus {
 
 /*--------- 3. Slider style ---------*/
 .slider-height-1 {
-  height: 844px;
+  height: 600px;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .slider-height-1 {
@@ -3049,7 +3049,7 @@ background: linear-gradient(135deg,  rgba(228,72,72,1) 0%,rgba(173,57,57,1) 100%
   font-weight: 400;
 }
 .section-title p {
-  font-size: 16px;
+  font-size: 24px;
   line-height: 26px;
 }
 @media only screen and (max-width: 767px) {
@@ -3422,6 +3422,9 @@ background: linear-gradient(135deg,  rgba(228,72,72,1) 0%,rgba(173,57,57,1) 100%
   line-height: 26px;
   width: 92%;
   margin: 0 0 0 32px;
+  text-align: justify;
+  font-size: 16px;
+
 }
 @media only screen and (max-width: 767px) {
   .about-content > p {
@@ -3450,7 +3453,7 @@ background: linear-gradient(135deg,  rgba(228,72,72,1) 0%,rgba(173,57,57,1) 100%
   }
 }
 .about-img.default-overlay:before {
-  background-color: #000;
+  /*background-color: #000;*/
   opacity: 0.5;
 }
 .about-img.default-overlay img {
