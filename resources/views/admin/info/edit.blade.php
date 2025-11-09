@@ -81,6 +81,11 @@
                     </div>
 
                     <div class="form-group col-md-6">
+                        <label for="instagram">Instagram:</label>
+                        <input type="url" class="form-control" value="{{ $info->instagram }}" name="instagram">
+                    </div>
+
+                    <div class="form-group col-md-6">
                         <label for="linkedIn">LinkedIN:</label>
                         <input type="url" class="form-control" value="{{ $info->linkedIn }}" name="linkedIn">
                     </div>

@@ -1,12 +1,35 @@
 @extends('basic_pages.layouts.master')
 
+@section('meta_content')
+    <!-- HTML Meta Tags -->
+  <title>{{ $destination_single->title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??" "}}</title>
+  <meta name="description" content="{{ $destination_single->seo_description??'' }}">
+  <meta name="keywords" content="{{ $destination_single->seo_keyword??""}}">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $destination_single->seo_title??"" }} - {{ App\Helpers\Helper::getInfoValue('name') ??''}}">
+  <meta property="og:description" content="{{ $destination_single->seo_description??"" }}">
+  <meta property="og:image" content="{{ asset('storage/' . $destination_single->seo_image) }}">
+  <meta property="og:image:alt" content="{{ $destination_single->seo_title }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}} Logo">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="{{ url()->current() }}">
+  <meta property="twitter:url" content="{{ url()->current() }}">
+  <meta name="twitter:title" content="{{ $destination_single->seo_title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}}">
+  <meta name="twitter:description" content="{{ $destination_single->seo_description??'' }}">
+  <meta name="twitter:image" content="{{ asset('storage/' . $destination_single->seo_image) }}">
+    <!--seo by susan paudel-->
+@endsection
+
 
 @section('content')
     <div class="breadcrumb-area">
         <div class="breadcrumb-top default-overlay bg-img pt-100 pb-95"
             style="background-image:url({{ asset('storage/' . ($destination_single->banner_image ?? 'frontend/img/images/details-img-1.jpg')) }});">
             <div class="container">
-                <h2>{{ $destination_single->nation->name ?? '' }}</h2>
+                <h2>{{ $destination_single->details_title ?? '' }}</h2>
                 <p>{{ $destination_single->sub_title ?? '' }}</p>
             </div>
         </div>
@@ -14,7 +37,7 @@
             <div class="container">
                 <ul>
                     <li><a href="/">Home</a> <span><i class="fa fa-angle-double-right"></i>Study in
-                            {{ $destination_single->nation->name ?? '' }}</span>
+                            {{ $destination_single->details_title ?? '' }}</span>
                     </li>
                 </ul>
             </div>
@@ -27,7 +50,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="about-content">
                             <div class="section-title section-title-green mb-30">
-                                <h2>Why Study in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                                <h2>Why Study in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                                 <p>{{ $destination_single->why_subtitle ?? '' }}</p>
                             </div>
                             <p>{!! $destination_single->description ?? '' !!}</p>
@@ -57,7 +80,7 @@
         <div class="achievement-area pt-75 pb-80 achievement-area-custom">
             <div class="container">
                 <div class="section-title mb-50">
-                    <h2>Facts about <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                    <h2>Facts about <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                     <p>{{ $destination_single->fact_subtitle ?? '' }}</p>
                 </div>
                 <div class="grid-container-custom mb-80">
@@ -72,8 +95,7 @@
                 </div>
                 <div class="video-area-custom">
                     <h2 class="mb-20">
-                        <strong>Education System in {{ $destination_single->nation->name ?? '' }} | Study in
-                            {{ $destination_single->nation->name ?? '' }} from Nepal</strong>
+                        <strong>Education System in {{ $destination_single->details_title ?? '' }} </strong>
                     </h2>
                     <div class="video-area bg-img pt-270 pb-270"
                         style="background-image:url({{ asset('storage/' . ($destination_single->video_image ?? 'frontend/img/images/details-img-1.jpg')) }});">
@@ -96,7 +118,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="section-title b-0">
-                            <h2>Reasons to Study in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                            <h2>Reasons to Study in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                             <p>{{ $destination_single->reason_subtitle ?? '' }}</p>
                         </div>
                     </div>
@@ -132,14 +154,14 @@
     @endif
 
 
-    @if (!empty($destination_single->latestVisa))
+    {{-- @if (!empty($destination_single->latestVisa))
         <div class="about-us pt-80 pb-80 visa-custom">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="about-content">
                             <div class="section-title section-title-green mb-30">
-                                <h2>Visa Process <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                                <h2>Visa Process <span>{{ $destination_single->details_title ?? '' }}</span></h2>
 
                                 <p>{{ $destination_single->latestVisa->sub_title ?? '' }}</p>
 
@@ -153,7 +175,7 @@
                                 <h3>For more details click here</h3>
                             </div>
                             <div class="about-btn mt-10">
-                                <a class="default-btn" href="{!! $destination_single->latestVisa->link ?? '' !!}" target="_blank">Visa Process</a>
+                                <a class="default-btn" href="{{ route('contact') }}">Contact Us</a>
                             </div>
                         </div>
                     </div>
@@ -174,7 +196,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     @if (!empty($destination_single->latestCost))
         <div class="about-us pt-80 pb-80 j-custom">
@@ -183,9 +205,9 @@
                     <div class="col-lg-9 col-md-6">
                         <div class="about-content">
                             <div class="section-title mb-30">
-                                <h2>Cost to Study in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                                <h2>Cost to Study in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                                 <p>Below is a table providing an approximate range of annual tuition fees for international
-                                    students studying in {{ $destination_single->nation->name ?? '' }}:</p>
+                                    students studying in {{ $destination_single->details_title ?? '' }}:</p>
                             </div>
                             {{-- @dd($destination_single->latestCost->value) --}}
 
@@ -222,8 +244,8 @@
                 </div>
                 <div class="about-content">
                     <div class="section-title mb-30">
-                        <h2>Top Universities in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
-                        <p>Below is a table providing top universities in {{ $destination_single->nation->name ?? '' }},
+                        <h2>Top Universities in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
+                        <p>Below is a table providing top universities in {{ $destination_single->details_title ?? '' }},
                             where
                             excellence meets opportunity!</p>
                     </div>
@@ -266,7 +288,7 @@
         <div class="achievement-area pt-75 pb-20 achievement-area-custom">
             <div class="container">
                 <div class="section-title mb-50">
-                    <h2>Best Cities to Study in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                    <h2>Best Cities to Study in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                     <p>{{ $destination_single->city_subtitle ?? '' }}</p>
                 </div>
                 <div class="grid-container-custom mb-80">
@@ -295,7 +317,7 @@
                     <div class="col-md-6">
                         <div class="about-content">
                             <h3 class="popularandcost">Popular Courses
-                                <span>{{ $destination_single->nation->name ?? '' }}</span>
+                                <span>{{ $destination_single->details_title ?? '' }}</span>
                             </h3>
                             <div class="custom-table responsive-table table-responsive">
                                 <table class="table table-bordered border-default">
@@ -333,7 +355,7 @@
                     <div class="col-md-6">
                         <div class="about-content">
                             <h3 class="popularandcost">Cost of Living in
-                                <span>{{ $destination_single->nation->name ?? '' }}</span>
+                                <span>{{ $destination_single->details_title ?? '' }}</span>
                             </h3>
                             @if (!empty($destination_single->latestLivingCost) && $destination_single->latestLivingCost->value)
                                 <div class="custom-table bootstrap-table responsive-table table-responsive">
@@ -355,7 +377,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="section-title b-0">
-                            <h2>Health Insurance in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                            <h2>Health Insurance in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                             <p>{{ $destination_single->health_subtitle ?? '' }}</p>
                         </div>
                     </div>
@@ -404,7 +426,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="about-content">
                             <div class="section-title section-title-green mb-30">
-                                <h2>Scholarships in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                                <h2>Scholarships in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                                 <p>{{ $destination_single->latestScholarship->sub_title ?? '' }}</p>
                             </div>
                             <p>{!! $destination_single->latestScholarship->description ?? '' !!}</p>
@@ -442,7 +464,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="section-title b-0">
-                            <h2>Job Opportunities in <span>{{ $destination_single->nation->name ?? '' }}</span></h2>
+                            <h2>Job Opportunities in <span>{{ $destination_single->details_title ?? '' }}</span></h2>
                             <p>{{ $destination_single->job_subtitle ?? '' }}</p>
                         </div>
                     </div>
@@ -505,7 +527,7 @@
                                                 aria-labelledby="heading{{ $index }}"
                                                 data-bs-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>{{ $faq->description }}</p>
+                                                    <p>{!! $faq->description !!}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -534,7 +556,7 @@
                                                 aria-labelledby="heading{{ $index }}"
                                                 data-bs-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    <p>{{ $faq->description }}</p>
+                                                    <p>{!! $faq->description !!}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -587,7 +609,7 @@
                                             <option>Select a Country</option>
                                             @foreach ($inquiry_destination as $destination)
                                                 <option value="{{ $destination->id }}">
-                                                    {{ $destination->nation->name ?? '' }}
+                                                    {{ $destination->details_title ?? '' }}
                                                 </option>
                                             @endforeach
 

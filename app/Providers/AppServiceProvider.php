@@ -68,14 +68,14 @@ class AppServiceProvider extends ServiceProvider
 
             // Share English tests
             if (Schema::hasTable('english_tests')) {
-                $view->with('english', EnglishTest::orderBy('order', 'asc')->get());
+                $view->with('english', EnglishTest::orderBy('order', 'asc')->where('status',1)->get());
             } else {
                 $view->with('english', []);
             }
 
             // Share language tests
             if (Schema::hasTable('language_tests')) {
-                $view->with('language', LanguageTest::orderBy('order', 'asc')->get());
+                $view->with('language', LanguageTest::orderBy('order', 'asc')->where('status',1)->get());
             } else {
                 $view->with('language', []);
             }

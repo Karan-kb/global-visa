@@ -38,7 +38,7 @@ Destination
                     <th>S.N.</th>
                     <th>Title</th>
                     <th>Country</th>
-                    <th>Description</th>
+                    {{-- <th>Description</th> --}}
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -48,8 +48,8 @@ Destination
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $destination->title }}</td>
-                        <td>{{ $destination->nation->name ?? 'N/A' }}</td>
-                        <td>{!! Str::limit($destination->description, 100) !!}</td>
+                        <td>{{ $destination->details_title ?? 'N/A' }}</td>
+                        {{-- <td>{!! Str::limit($destination->description, 100) !!}</td> --}}
                         <td>
                             <a href="{{ route('destinations.edit', $destination->id) }}" style="border-radius:50%" class="btn btn-sm btn-warning">
                                 <i class="fa fa-edit"></i>

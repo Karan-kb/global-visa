@@ -25,6 +25,7 @@ class CreateInfosTable extends Migration
             $table->string('favicon')->nullable();
             $table->string('facebook')->nullable();
             $table->string('linkedIn')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('fax')->nullable();
             $table->string('pobox')->nullable();

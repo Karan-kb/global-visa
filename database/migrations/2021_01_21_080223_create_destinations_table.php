@@ -18,9 +18,11 @@ class CreateDestinationsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('sub_title')->nullable();
+            $table->string('details_title')->nullable();
             $table->string('country');
             $table->longText('description')->nullable();
             $table->string('banner_image')->nullable();
+            $table->string('feature_image')->nullable();
             $table->string('youtube_link')->nullable();
             $table->longText('requirement')->nullable();
             $table->longText('scholarship')->nullable();

@@ -6,7 +6,7 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    
+
     <style>
         .box {
             border: 2px solid #ccc;
@@ -84,12 +84,19 @@
 
                             <div class="row">
                                 <!-- Sub Title and Country fields -->
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="sub_title">Sub Title</label>
                                     <input type="text" class="form-control" name="sub_title"
                                         value="{{ old('sub_title', $dest->sub_title) }}" placeholder="Enter sub title">
                                 </div>
-                                <div class="form-group col-md-6">
+
+                                <div class="form-group col-md-4">
+                                    <label for="details_title">Country for Title</label>
+                                    <input type="text" class="form-control" name="details_title"
+                                        value="{{ old('details_title', $dest->details_title) }}"
+                                        placeholder="Enter Details title">
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label for="country">Country <span class="required">*</span></label>
                                     <select class="form-control" name="country" required>
                                         @foreach ($countries as $country)
@@ -195,6 +202,19 @@
                                         <small class="form-text text-muted">Current banner image</small>
                                     @endif
                                 </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="why_image">Feature Image</label>
+                                    <input type="file" class="form-control" name="feature_image" accept="image/*">
+
+                                    @if ($dest->feature_image)
+                                        <img src="{{ asset('storage/' . $dest->feature_image) }}" alt="Feature Image"
+                                            width="100" class="mt-2">
+                                        <small class="form-text text-muted">Current Feature image</small>
+                                    @endif
+                                </div>
+                            
+                           
                                 <div class="form-group col-md-6">
                                     <label for="why_image">Why Section Image</label>
                                     <input type="file" class="form-control" name="why_image" accept="image/*">
@@ -205,6 +225,7 @@
                                         <small class="form-text text-muted">Current why section image</small>
                                     @endif
                                 </div>
+
                                 <div class="form-group col-md-6">
                                     <label for="video_image">Video Banner Image</label>
                                     <input type="file" class="form-control" name="video_image" accept="image/*">
@@ -215,69 +236,69 @@
                                         <small class="form-text text-muted">Current video banner image</small>
                                     @endif
                                 </div>
+                          
 
-                                <div class="form-group col-md-6">
-                                    <label for="is_active">Is Active</label>
-                                    <select class="form-control" name="is_active">
-                                        <option value="1"
-                                            {{ old('is_active', $dest->is_active) == 1 ? 'selected' : '' }}>Active</option>
-                                        <option value="0"
-                                            {{ old('is_active', $dest->is_active) == 0 ? 'selected' : '' }}>Inactive
-                                        </option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label for="seo_title">SEO Title</label>
-                                    <input type="text" class="form-control" name="seo_title"
-                                        value="{{ $dest->seo_title }}">
-                                </div>
-
-
-
-                                <div class="form-group col-md-6">
-                                    <label for="seo_description">SEO Description</label>
-                                    <textarea class="form-control" name="seo_description">{{ $dest->seo_description }}</textarea>
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="seo_keyword">SEO Keyword</label>
-                                    <input type="text" class="form-control" name="seo_keyword"
-                                        id="bootstrap-tagsinput" placeholder="Enter SEO tags" data-role="tagsinput"
-                                        value="{{ $dest->seo_keyword }}">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="seo_image">SEO Image</label>
-                                    <input type="file" class="form-control" name="seo_image" accept="image/*">
-                                    @if ($dest->seo_image)
-                                        {{-- <small class="text-muted">Current Image: {{ asset('storage/' .$dest->seo_image) }}</small> --}}
-                                        <img src="{{ asset('storage/' . $dest->seo_image) }}" style="height: 50px; width:70px" alt="Image">
-
-                                    @endif
-                                    <small class="text-muted">
-                                        <strong>Recommended:</strong> JPG, JPEG, PNG | 1200px x 630px | ≤ 9MB
-                                    </small>
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label for="is_active">Is Active</label>
+                                <select class="form-control" name="is_active">
+                                    <option value="1"
+                                        {{ old('is_active', $dest->is_active) == 1 ? 'selected' : '' }}>Active</option>
+                                    <option value="0"
+                                        {{ old('is_active', $dest->is_active) == 0 ? 'selected' : '' }}>Inactive
+                                    </option>
+                                </select>
                             </div>
 
                         </div>
 
-                        <!-- Form Footer -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-save"></i> Submit
-                            </button>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="seo_title">SEO Title</label>
+                                <input type="text" class="form-control" name="seo_title"
+                                    value="{{ $dest->seo_title }}">
+                            </div>
+
+
+
+                            <div class="form-group col-md-6">
+                                <label for="seo_description">SEO Description</label>
+                                <textarea class="form-control" name="seo_description">{{ $dest->seo_description }}</textarea>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="seo_keyword">SEO Keyword</label>
+                                <input type="text" class="form-control" name="seo_keyword" id="bootstrap-tagsinput"
+                                    placeholder="Enter SEO tags" data-role="tagsinput" value="{{ $dest->seo_keyword }}">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="seo_image">SEO Image</label>
+                                <input type="file" class="form-control" name="seo_image" accept="image/*">
+                                @if ($dest->seo_image)
+                                    {{-- <small class="text-muted">Current Image: {{ asset('storage/' .$dest->seo_image) }}</small> --}}
+                                    <img src="{{ asset('storage/' . $dest->seo_image) }}"
+                                        style="height: 50px; width:70px" alt="Image">
+                                @endif
+                                <small class="text-muted">
+                                    <strong>Recommended:</strong> JPG, JPEG, PNG | 1200px x 630px | ≤ 9MB
+                                </small>
+                            </div>
                         </div>
-                    </form>
 
                 </div>
-                <!-- /.box -->
+
+                <!-- Form Footer -->
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Submit
+                    </button>
+                </div>
+                </form>
+
             </div>
-            <!-- /.col -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
         </div>
         <!-- /.row -->
     </section>

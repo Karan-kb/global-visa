@@ -5,14 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Blog;
+
+use App\Models\ResizeImg;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
+    protected $folderPath, $path;
+
     public function __construct(){
         $this->middleware('auth');
+
+        $this->folderPath = 'public/blog';
+        $this->path = public_path('storage/blog');
+        if (!file_exists($this->path)) {
+            Storage::makeDirectory($this->folderPath);
+            chmod($this->path, 0755);
+        }
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +33,9 @@ class BlogController extends Controller
     public function index()
     {
         $blog=Blog::orderBy('created_at','DESC')->get();
+        
         $category=Category::all();
+        
         return view('admin.blog.blog')->with('blog',$blog)->with('category',$category);
     }
 
@@ -58,14 +72,39 @@ class BlogController extends Controller
             $path=$image->move('storage/blog',$nameToStore);
         }
 
+        $seoImageName = null;
+
+        if ($request->hasFile('seo_image')) {
+            $seoImage = $request->file('seo_image');
+            $extension = $seoImage->getClientOriginalExtension();
+
+            $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() .'.webp';
+            $resizedSeoImageName = 'seo_' . $seoImageName; // e.g., "seo_my-blog-post-...jpg"
+        
+            // Save original (optional, if you want to keep it)
+            $path = $seoImage->storeAs('public/blog', $seoImageName);
+        
+            // Resize and save with the "seo_" prefix
+            ResizeImg::resizeImage(1200, 630, $seoImage, $this->folderPath . '/' . $resizedSeoImageName);
+        
+            // Store the resized filename in the database
+            $seoImagePath = $resizedSeoImageName; // e.g., "seo_my-blog-post-...jpg"
+           
+        }
+
         $blog=[
             'title'=>$request->title,
             'category_id'=>$request->category,
             'featured'=>$request->featured,
             'location'=>$request->location,
             'body'=>is_null($request->body)?NULL:$request->body,
-            'short_description'=>is_null($request->short_description)?NULL:$request->short_description,
+            'short_description'=>$request->short_description ?? NULL,
             'image'=>($nameToStore=='')?NULL:$nameToStore,
+            'seo_title'=>$request->seo_title ?? '',
+            'seo_description'=>$request->seo_description ?? '',
+            'seo_keyword'=>$request->seo_keyword ?? '',
+
+            'seo_image'=>$seoImagePath,
             //'slug'=>Str::slug($request->title),
             //'contentfield'=>$request->contentfield,
         ];
@@ -126,11 +165,34 @@ class BlogController extends Controller
              $blog->image=$nameToStore;
      
         }
+
+        $seoImageName = $blog->seo_image;
+
+
+        if ($request->hasFile('seo_image')) {
+            // Delete old SEO image if exists
+            if (!empty($service->seo_image) && Storage::exists('public/blog/' . $blog->seo_image)) {
+                Storage::delete('public/blog/' . $blog->seo_image);
+            }
+        
+            // Save new SEO image
+            $seoImage = $request->file('seo_image');
+            $extension = $seoImage->getClientOriginalExtension();
+            $seoImageName = Str::slug($request->title) . '-' . uniqid() . '-' . time() .'.webp';
+            $resizedSeoImageName = 'seo_' . $seoImageName;
+            $seoImage->storeAs('public/blog', $seoImageName);
+            ResizeImg::resizeImage(1200, 630, $seoImage, 'public/blog/seo_' . $seoImageName);
+        
+            $blog->seo_image = $resizedSeoImageName;
+        }
         
         $blog->title=$request->title;
         $blog->category_id=$request->category;
         $blog->featured=$request->featured;
         $blog->location=$request->location;
+        $blog->seo_title=$request->seo_title;
+        $blog->seo_keyword=$request->seo_keyword;
+        $blog->seo_description=$request->seo_description;
         $blog->body=$request->body;
         $blog->short_description=$request->short_description;
 

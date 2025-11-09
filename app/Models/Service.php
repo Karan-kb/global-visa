@@ -12,7 +12,7 @@ class Service extends Model
     use Sluggable;
     protected $table = 'services';
     protected $primaryKey = 'id';  
-    protected $fillable=['title','body','image','order'];
+    protected $fillable=['title','body','image','order','seo_title','seo_description','seo_image','seo_keyword'];
 
     public function questionaire(){
         return $this->hasMany('App\Models\Questionaire');

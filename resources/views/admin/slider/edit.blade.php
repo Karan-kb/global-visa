@@ -47,15 +47,15 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="heading">Heading <span class="text-danger">*</span></label>
+                                        <label for="heading">Heading <span class="text-danger"></span></label>
                                         <input type="text" class="form-control" name="heading"
-                                            value="{{ old('heading', $slider->heading) }}" required>
+                                            value="{{ old('heading', $slider->heading) }}">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="title">Title <span class="text-danger">*</span></label>
+                                        <label for="title">Title <span class="text-danger"></span></label>
                                         <input type="text" class="form-control" name="title"
-                                            value="{{ old('title', $slider->title) }}" required>
+                                            value="{{ old('title', $slider->title) }}" >
                                     </div>
 
                                     <div class="form-group">
@@ -101,6 +101,9 @@
                                         <input type="file" class="form-control" name="image_1" accept="image/*">
                                         @if ($slider->image_1)
                                             <small class="text-muted">Current Image: {{ $slider->image_1 }}</small>
+                                            <img style="height:36px; width:36px;"
+                                            src="{{ asset('storage/slider/thumb_' . $slider->image_1) }}"
+                                            alt="{{ $slider->title }}">
                                         @endif
                                         <small class="text-muted">
                                             <strong>Recommended:</strong> JPG, JPEG, PNG | 1000px x 667px | ≤ 9MB

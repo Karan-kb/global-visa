@@ -13,7 +13,7 @@ class Destination extends Model
 
     protected $fillable = [
         'title', 'slug', 'sub_title', 'country', 'description', 'banner_image','video_image', 'youtube_link', 
-        'requirement', 'scholarship', 'in_take', 'order', 'is_active','why_image',
+        'requirement', 'scholarship', 'in_take', 'order', 'is_active','why_image','feature_image',
                 'why_subtitle',
                 'fact_subtitle',
                 'city_subtitle',
@@ -21,6 +21,7 @@ class Destination extends Model
                 'health_subtitle',
                 'job_subtitle',
                 'best_cities',
+                'details_title',
                 'video_image',
                 'seo_title',
                 'seo_keyword',

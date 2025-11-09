@@ -6,6 +6,7 @@
 
 @push('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
     <style>
         .box {
             border: 2px solid #ccc;
@@ -82,12 +83,17 @@
 
                             <div class="row">
                                 <!-- Sub Title and Country fields -->
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="sub_title">Sub Title</label>
                                     <input type="text" class="form-control" name="sub_title"
                                         value="{{ old('sub_title') }}" placeholder="Enter sub title">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
+                                    <label for="best_cities">Country for Title</label>
+                                    <input type="text" class="form-control" id="details_title" name="details_title"
+                                        value="{{ old('details_title') }}" placeholder="Details Title Here...">
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label for="country">Country <span class="required">*</span></label>
                                     <select class="form-control" name="country" value="{{ old('country') }}"
                                         placeholder="Enter country" required>
@@ -96,6 +102,8 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+
                             </div>
 
                             <div class="row">
@@ -159,6 +167,8 @@
                                     <input type="text" class="form-control" id="best_cities" name="best_cities"
                                         value="{{ old('best_cities') }}" placeholder="Eg: city1, city2, city3">
                                 </div>
+
+                              
                                 {{-- <div class="form-group col-md-6">
                                     <label for="order">Order</label>
                                     <input type="number" class="form-control" name="order"
@@ -192,6 +202,11 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
+                                    <label for="why_image"> Feature Image</label>
+                                    <input type="file" class="form-control" name="feature_image" accept="image/*">
+                                </div>
+
+                                <div class="form-group col-md-6">
                                     <label for="video_image">Video Banner Image</label>
                                     <input type="file" class="form-control" name="video_image" accept="image/*">
                                 </div>
@@ -200,6 +215,8 @@
                                     <label for="why_image"> Why Section Image</label>
                                     <input type="file" class="form-control" name="why_image" accept="image/*">
                                 </div>
+
+                               
 
                                 <div class="form-group col-md-6">
                                     <label for="is_active">Is Active</label>
@@ -279,8 +296,8 @@
 
 
             $('#seo_keyword').tagsinput({
-                confirmKeys:[13,44],
-                trimValue:true
+                confirmKeys: [13, 44],
+                trimValue: true
             });
         });
     </script>

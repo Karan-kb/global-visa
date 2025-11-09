@@ -38,7 +38,7 @@
                                     <th>S.N.</th>
                                     <th>Title</th>
                                     <th>Sub Title</th>
-                                    <th>Description</th>
+                                    {{-- <th>Description</th> --}}
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -49,7 +49,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $visa->title }}</td>
                                         <td>{{ $visa->sub_title }}</td>
-                                        <td>{!! Str::limit($visa->description, 100) !!}</td>
+                                        {{-- <td>{!! Str::limit($visa->description, 100) !!}</td> --}}
                                         <td>
                                             <a href="{{ route('destination-visa.edit', $visa->id) }}"
                                                 style="border-radius:50%" class="btn btn-sm btn-warning">

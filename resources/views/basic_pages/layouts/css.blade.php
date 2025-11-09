@@ -57,5 +57,53 @@
         transform: translateY(0);
         /* Remove lift effect */
     }
+
+    #preloader {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .spinner {
+        width: 60px;
+        height: 60px;
+        position: relative;
+    }
+
+    .double-bounce1,
+    .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        background-color: #007bff;
+        /* Match your theme */
+        border-radius: 50%;
+        opacity: 0.6;
+        position: absolute;
+        animation: bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+        animation-delay: -1.0s;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: scale(0.0);
+        }
+
+        50% {
+            transform: scale(1.0);
+        }
+    }
 </style>
+
 @stack('css')

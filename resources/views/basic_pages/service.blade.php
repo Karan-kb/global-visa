@@ -3,6 +3,29 @@
     Services
 @endsection
 
+@section('meta_content')
+    <!-- HTML Meta Tags -->
+  <title>{{ $s->title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??" "}}</title>
+  <meta name="description" content="{{ $s->seo_description??'' }}">
+  <meta name="keywords" content="{{$s->seo_keyword??""}}">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ $s->seo_title??"" }} - {{ App\Helpers\Helper::getInfoValue('name') ??''}}">
+  <meta property="og:description" content="{{ $s->seo_description??"" }}">
+  <meta property="og:image" content="{{ asset('storage/service/' . $s->seo_image) }}">
+  <meta property="og:image:alt" content="{{ $s->seo_title }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}} Logo">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="{{ url()->current() }}">
+  <meta property="twitter:url" content="{{ url()->current() }}">
+  <meta name="twitter:title" content="{{ $s->seo_title??'' }} - {{ App\Helpers\Helper::getInfoValue('name') ??""}}">
+  <meta name="twitter:description" content="{{ $s->seo_description??'' }}">
+  <meta name="twitter:image" content="{{ asset('storage/service/' . $s->seo_image) }}">
+    <!--seo by susan paudel-->
+@endsection
+
 @section('content')
     <!-- Breadcrumb Section -->
     <div class="breadcrumb-area">

@@ -5,8 +5,19 @@
 @endsection
 
 @push('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
+    <style>
+       
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            width: 650px;
+            height: 200px;
+        }
+    </style> 
+
     <style>
         .box {
             border: 2px solid #ccc;
@@ -202,7 +213,7 @@
 @endsection
 
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -259,7 +270,9 @@
 
                 // Initialize Summernote for the new textarea
                 $('.summernote').last().summernote({
-                    height: 200,
+                    height: 300, // Set the default height
+                    minHeight: 300, // Minimum height
+                    maxHeight: 500, // Maximum height
                     toolbar: [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -275,7 +288,9 @@
 
             // Initialize Summernote for existing textareas
             $('.summernote').summernote({
-                height: 200,
+                height: 300, // Set the default height
+                minHeight: 300, // Minimum height
+                maxHeight: 500, // Maximum height
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough', 'superscript', 'subscript']],
